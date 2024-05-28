@@ -10,11 +10,11 @@
 <form action="emp">
 <h1>Employee Login</h1>
 <label>Name : </label>
-<input type="text" name="name" placeholder="Enter your Name">
+<input type="text" name="name">
 <br>
 <label>Password :</label>
 
-<input type="password" name="password" placeholder="Enter your Password">
+<input type="password" name="password">
 
 <button>submit</button>
 </form>
