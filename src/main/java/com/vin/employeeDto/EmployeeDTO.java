@@ -6,9 +6,11 @@ public class EmployeeDTO {
 	private long empId;
 	private String name;
 	private String gender;
+	private int age;
 	private String mail;
 	private String jobRole;
 	private double salary;
+	private String phone;
 	public long getEmpId() {
 		return empId;
 	}
@@ -46,23 +48,40 @@ public class EmployeeDTO {
 		this.salary = salary;
 	}
 	
+	
+	
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public EmployeeDTO() {
 		super();
 		
 	}
-	public EmployeeDTO(long empId, String name, String gender, String mail, String jobRole, double salary) {
+	public EmployeeDTO(long empId, String name, String gender, int age, String mail, String jobRole, double salary,
+			String phone) {
 		super();
 		this.empId = empId;
 		this.name = name;
 		this.gender = gender;
+		this.age = age;
 		this.mail = mail;
 		this.jobRole = jobRole;
 		this.salary = salary;
+		this.phone = phone;
 	}
 	@Override
 	public String toString() {
-		return "EmployeeDTO [empId=" + empId + ", name=" + name + ", gender=" + gender + ", mail=" + mail + ", jobRole="
-				+ jobRole + ", salary=" + salary + "]";
+		return "EmployeeDTO [empId=" + empId + ", name=" + name + ", gender=" + gender + ", age=" + age + ", mail="
+				+ mail + ", jobRole=" + jobRole + ", salary=" + salary + ", phone=" + phone + "]";
 	}
 
 	
