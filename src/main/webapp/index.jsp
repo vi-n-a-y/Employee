@@ -15,7 +15,7 @@
 <label>Password :</label>
 
 <input type="password" name="password" placeholder="Enter your Password">
-
+<input type="hidden" name="action" value="employeeLogin">
 <button>submit</button>
 </form>
 </body>
