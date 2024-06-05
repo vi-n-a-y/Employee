@@ -19,7 +19,11 @@ public class EmployeeManagement extends HttpServlet {
 		String action = request.getParameter("action");
 
 		switch (action) {
-		case "login":
+		case "adminRegister":
+			RegisterAdmin(request, response);
+			break;
+
+		case "adminLogin":
 			loginAdmin(request, response);
 			break;
 
@@ -52,6 +56,13 @@ public class EmployeeManagement extends HttpServlet {
 	public void loginAdmin(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String name = request.getParameter("name");
+	}
+
+	public void RegisterAdmin(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String name = request.getParameter("name");
+		String password = request.getParameter("password");
+		String mail = request.getParameter("mail");
 	}
 
 }
