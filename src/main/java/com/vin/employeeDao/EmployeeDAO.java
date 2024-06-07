@@ -15,13 +15,6 @@ public class EmployeeDAO {
 		
 		Connection con=DatabaseConnection.getConnection();
 		PreparedStatement ps=con.prepareStatement(st);
-//		ps.setString(0, empl.getName());
-//		ps.setString(1, empl.getGender());
-//		ps.setInt(2,empl.getAge());
-//		ps.setString(3,empl.getMail());
-//		ps.setString(4,empl.getJobRole());
-//		ps.setDouble(5, empl.getSalary());
-//		ps.setString(6,empl.getPhone());
 		
 		
 		
@@ -29,22 +22,18 @@ public class EmployeeDAO {
 		DatabaseConnection.closeConnection(con);
 		System.out.println(update);
 		return update;
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+				
 	}
 	
 	
 	
 
 }
+//		ps.setString(0, empl.getName());
+//		ps.setString(1, empl.getGender());
+//		ps.setInt(2,empl.getAge());
+//		ps.setString(3,empl.getMail());
+//		ps.setString(4,empl.getJobRole());
+//		ps.setDouble(5, empl.getSalary());
+//		ps.setString(6,empl.getPhone());
+
