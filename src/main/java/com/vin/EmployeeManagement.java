@@ -26,6 +26,9 @@ public class EmployeeManagement extends HttpServlet {
 		case "adminLogin":
 			loginAdmin(request, response);
 			break;
+		case "employeeRegister":
+			registerEmployee(request,response);	
+			break;	
 
 		}
 
@@ -64,6 +67,10 @@ public class EmployeeManagement extends HttpServlet {
 		String password = request.getParameter("password");
 		String mail = request.getParameter("mail");
 	}
+
+	public void registerEmployee(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+			}
 
 }
 
