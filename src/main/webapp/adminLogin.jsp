@@ -5,7 +5,7 @@
 <head>
 <link rel="stylesheet" href="style.css">
 <meta charset="ISO-8859-1">
-<title>Admin Login</title>
+<title>Insert title here</title>
 </head>
  <body>
     <form class="container" action="emp" method="get">
@@ -39,4 +39,3 @@
     </form>
   </body>
 </html>
-

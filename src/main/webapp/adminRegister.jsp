@@ -9,11 +9,11 @@
 <body>
 
 <form action="emp" method="post">
-	<input type="text" name="name" placeholder="Enter your name">
+	<input type="text" name="name1" placeholder="Enter your name">
 	<input type="password" name="password" placeholder="enter your password">
-	<input type="email" name="mail" placeholder="enter your mail">
+	<input type="text" name="mail" placeholder="enter your mail">
 	<input type="hidden" name="action" value="adminRegister">
-	<input type="button" value="submit">
+	<button>submit</button>
 	
 	</form>
 

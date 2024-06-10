@@ -5,7 +5,6 @@ public class AdminDTO {
 	private String adminId;
 	private String name;
 	private String password;
-	
 	private String mail;
 
 	public String getAdminId() {
