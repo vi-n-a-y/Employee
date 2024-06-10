@@ -26,13 +26,13 @@
 <input type="text" name="jobRole" placeholder="Enter your role">
 <br>
 <label>salary</label>
-<input type="number" name="salary" placeholder="Enter your salary">
+<input type="text" name="salary" placeholder="Enter your salary">
 <br>
 <label>phone</label>
 <input type="text" name="phone" placeholder="Enter your phone Number">
 
 <br>
-<input type="hidden" name="action" value="employeeLogin">
+<input type="hidden" name="action" value="employeeRegister">
 <button>submit</button>
 </form>
 </body>
