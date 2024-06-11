@@ -12,6 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 public class EmployeeManagement extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -139,11 +140,17 @@ public class EmployeeManagement extends HttpServlet {
 	}
 
 	public void getEmployeeDetails(HttpServletRequest request, HttpServletResponse response)
-			throws ClassNotFoundException, SQLException {
+			throws ClassNotFoundException, SQLException, ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("empId"));
 		EmployeeDAO emp = new EmployeeDAO();
 		EmployeeDTO empl = emp.getEmployeeDetails(id);
-		System.out.println(empl.getName());
+		HttpSession session=request.getSession();
+		if(empl!=null) {
+			session.setAttribute("empl", empl);
+			request.getRequestDispatcher("/viewEmployee.jsp").forward(request, response);
+			
+		}
+		
 
 	}
 

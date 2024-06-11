@@ -18,7 +18,7 @@
           class="form__input"
           name="name"
         />
-        <label for="name">Name</label>
+        <label for="name" class="lab">Name</label>
       </div>
 
       <div class="container">
@@ -30,7 +30,7 @@
           class="form__input"
           name="password"
         />
-        <label for="name">password</label>
+        <label for="name" class="lab">password</label>
       </div>
       <div>
       <input type="hidden" name="action" value="adminLogin">
