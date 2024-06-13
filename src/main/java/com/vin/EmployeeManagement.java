@@ -30,7 +30,7 @@ public class EmployeeManagement extends HttpServlet {
 
 			try {
 				registerAdmin(request, response);
-			} catch (ClassNotFoundException |  SQLException e) {
+			} catch (ClassNotFoundException | SQLException e) {
 
 				e.printStackTrace();
 			}
@@ -54,11 +54,16 @@ public class EmployeeManagement extends HttpServlet {
 		case "getEmployeeDetails":
 			try {
 				getEmployeeDetails(request, response);
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
+			} catch (ClassNotFoundException | SQLException e) {
+
 				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			}
+			break;
+		case "updateEmployee":
+			try {
+				updateEmployeeDetails(request, response);
+			} catch (ClassNotFoundException | SQLException | IOException e) {
+
 				e.printStackTrace();
 			}
 			break;
@@ -144,13 +149,35 @@ public class EmployeeManagement extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("empId"));
 		EmployeeDAO emp = new EmployeeDAO();
 		EmployeeDTO empl = emp.getEmployeeDetails(id);
-		HttpSession session=request.getSession();
-		if(empl!=null) {
+		HttpSession session = request.getSession();
+		if (empl != null) {
 			session.setAttribute("empl", empl);
 			request.getRequestDispatcher("/viewEmployee.jsp").forward(request, response);
-			
+
 		}
+
+	}
+
+	public void updateEmployeeDetails(HttpServletRequest request, HttpServletResponse response)
+			throws ClassNotFoundException, SQLException, IOException, ServletException {
+
+		int empId = Integer.parseInt(request.getParameter("empId"));
+		String name = request.getParameter("name");
+		int age = Integer.parseInt(request.getParameter("age"));
+		String gender = request.getParameter("gender");
+		String mail = request.getParameter("mail");
+		String jobRole = request.getParameter("jobRole");
+		Double salary = Double.parseDouble(request.getParameter("salary"));
+		String phone = request.getParameter("phone");
+		EmployeeDTO emp = new EmployeeDTO(empId, name, gender, age, mail, jobRole, phone);
+		EmployeeDAO empDao=new EmployeeDAO();
 		
+		if(empDao.updateEmployee( emp)) {
+			System.out.println("details updated successfully");
+			request.getRequestDispatcher("/viewEmployee.jsp").forward(request, response);
+		}else {
+			response.sendRedirect("employeeDetails.jps");
+		}
 
 	}
 

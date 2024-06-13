@@ -9,17 +9,13 @@
 </head>
 <body>
 
-<a href="salary.jsp" ><button class="sign">salary</button></a>
-
 <h1>Home Page</h1>
-<form action="emp" method="get">
-<label>Employee Id : </label>
-<input type="number" name="empId" placeholder="enter the employee details">
-<input type="hidden" name ="action" value="getEmployeeDetails" >
-<button>submit</button>
 
-
-</form>
+<a href="salary.jsp"><button>Salary</button></a>
+<a href="attendance.jsp"><button>Attendance</button></a>
+<a href="employeeDetails.jsp"><button>Employee Details</button></a>
+<a href="/"><button>about</button></a><br>
+<a href="/"><button>Exit</button></a>
 
 </body>
 </html>

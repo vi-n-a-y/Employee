@@ -106,6 +106,30 @@ public class EmployeeDAO {
 		}
 			return empl;
 	}
+	
+	public boolean updateEmployee(EmployeeDTO emp) {
+		
+		String query="update employeedetails set name='"+emp.getName()+"','"+emp.getAge()+"','"+emp.getGender()+"','"+emp.getMail()+"','"+emp.getJobRole()+"','"+emp.getPhone()+"'where id='"+emp.getEmpId()+"'";
+		
+				System.out.println(query);
+		   
+		
+		 
+		try {
+			Connection con=DatabaseConnection.getConnection();
+			PreparedStatement ps=con.prepareStatement(query);
+			ps.execute();
+		} catch (SQLException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
+		
+		
+		
+		return true;
+	}
 
 
 }

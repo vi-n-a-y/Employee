@@ -7,7 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form>
+<a href="fillAttendance.jsp"><button>Fill Attendance</button></a>
+<a href="viewAttendance.jsp"><button>View Attendance</button></a>
+<a href="#"><button>Back</button></a>
+<a href="#"><button>Exit</button></a>
+
+
+</body>
+</html>
+
+<!-- <form>
 <label>first half </label>
 <input type="text" name="first-half" placeholder="Enter the Employee first-half attendance">
 <label>Second half </label>
@@ -16,7 +25,4 @@
 <input type="hidden" name="action" value="attendance">
 <input type="button" value="submit">
 
-</form>
-
-</body>
-</html>
+</form> -->

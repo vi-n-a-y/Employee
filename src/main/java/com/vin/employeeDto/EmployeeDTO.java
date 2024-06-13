@@ -78,6 +78,19 @@ public class EmployeeDTO {
 		this.salary = salary;
 		this.phone = phone;
 	}
+	
+	
+	
+	public EmployeeDTO(long empId, String name, String gender, int age, String mail, String jobRole, String phone) {
+		super();
+		this.empId = empId;
+		this.name = name;
+		this.gender = gender;
+		this.age = age;
+		this.mail = mail;
+		this.jobRole = jobRole;
+		this.phone = phone;
+	}
 	@Override
 	public String toString() {
 		return "EmployeeDTO [empId=" + empId + ", name=" + name + ", gender=" + gender + ", age=" + age + ", mail="
