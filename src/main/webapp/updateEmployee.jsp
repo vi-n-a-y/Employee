@@ -11,7 +11,7 @@
 <form action="emp" method="get">
 <center>
 <label><b>Employee ID</b></label><input type="number" name ="empId" placeholder="Enter the Employee Id here">
-<input type="hidden" name ="action" value="getEmployeeDetails" >
+<input type="hidden" name ="action" value="getEmployeeDetailsForUpdate" >
 <button>Search</button>
 </center>
 </form>

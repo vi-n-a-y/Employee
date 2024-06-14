@@ -8,6 +8,7 @@ import com.vin.employeeDto.AdminDTO;
 import com.vin.employeeDto.EmployeeDTO;
 
 import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -62,6 +63,15 @@ public class EmployeeManagement extends HttpServlet {
 		case "updateEmployee":
 			try {
 				updateEmployeeDetails(request, response);
+			} catch (ClassNotFoundException | SQLException | IOException e) {
+
+				e.printStackTrace();
+			}
+			break;
+
+		case "getEmployeeDetailsForUpdate":
+			try {
+				getEmployeeDetailsForUpdate(request, response);
 			} catch (ClassNotFoundException | SQLException | IOException e) {
 
 				e.printStackTrace();
@@ -144,19 +154,57 @@ public class EmployeeManagement extends HttpServlet {
 
 	}
 
-	public void getEmployeeDetails(HttpServletRequest request, HttpServletResponse response)
+	public boolean getEmployee(HttpServletRequest request, HttpServletResponse response)
 			throws ClassNotFoundException, SQLException, ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("empId"));
+		System.out.println(id);
 		EmployeeDAO emp = new EmployeeDAO();
 		EmployeeDTO empl = emp.getEmployeeDetails(id);
 		HttpSession session = request.getSession();
+		// System.out.println(request.getContextPath());
+		// System.out.println(request.getPathInfo());
+//		System.out.println("get server name  "+ request.getServerName());
+//		System.out.println("get server port  "+request.getServerPort());
+//		System.out.println("get path Translated : "+request.getPathTranslated());
+//		System.out.println("get query string : "+request.getQueryString());
+//		System.out.println("get Remote User : "+request.getRemoteUser());
+//		System.out.println("get Request Uri : "+request.getRequestURI());
+//		
+//		System.out.println("get user principal : "+request.getUserPrincipal());
+
 		if (empl != null) {
 			session.setAttribute("empl", empl);
-			request.getRequestDispatcher("/viewEmployee.jsp").forward(request, response);
+			return true;
 
+		} else
+			return false;
+
+	}
+
+	public void getEmployeeDetails(HttpServletRequest request, HttpServletResponse response)
+			throws ClassNotFoundException, SQLException, ServletException, IOException {
+		if (getEmployee(request, response)) {
+			request.getRequestDispatcher("/viewEmployee.jsp").forward(request, response);
 		}
 
 	}
+
+	public void getEmployeeDetailsForUpdate(HttpServletRequest request, HttpServletResponse response)
+			throws ClassNotFoundException, SQLException, ServletException, IOException {
+		if (getEmployee(request, response)) {
+			request.getRequestDispatcher("/updateEmployee.jsp").forward(request, response);
+		}
+
+	}
+
+	// System.out.println("getContextPath"+request.getContextPath());
+//			System.out.println("getServletInfo"+ ServletContext.getRealPath(null));
+
+	// System.out.println("getRequestURl :"+request.getRequestURL());
+	// System.out.println("getServletName :"+request.getServerName());
+	// System.out.println(response.encodeRedirectURL(getServletInfo()));
+	// System.out.println(response.getContentType());
+//			System.out.println(request.getPathInfo());
 
 	public void updateEmployeeDetails(HttpServletRequest request, HttpServletResponse response)
 			throws ClassNotFoundException, SQLException, IOException, ServletException {
@@ -170,12 +218,12 @@ public class EmployeeManagement extends HttpServlet {
 		Double salary = Double.parseDouble(request.getParameter("salary"));
 		String phone = request.getParameter("phone");
 		EmployeeDTO emp = new EmployeeDTO(empId, name, gender, age, mail, jobRole, phone);
-		EmployeeDAO empDao=new EmployeeDAO();
-		
-		if(empDao.updateEmployee( emp)) {
+		EmployeeDAO empDao = new EmployeeDAO();
+
+		if (empDao.updateEmployee(emp)) {
 			System.out.println("details updated successfully");
 			request.getRequestDispatcher("/viewEmployee.jsp").forward(request, response);
-		}else {
+		} else {
 			response.sendRedirect("employeeDetails.jps");
 		}
 
