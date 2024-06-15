@@ -24,7 +24,6 @@ if(empl!=null){%>
    	  <tr><td><label>Employee Id</label></td><td><input name="empId" value="<%=empl.getEmpId() %>" ></td></tr>
      <tr><td><label>Employee Name</label></td><td><input name="name" value="<%=empl.getName() %>"></td></tr>
      <tr><td><label>Employee Mail</label></td><td><input name="mail" value="<%=empl.getMail() %>" ></td></tr>
-      <h2>something</h2>
      <tr><td><label>Employee Age</label></td><td><input name="age" value="<%=empl.getAge() %>" ></td></tr>
      <tr><td><label>Employee Gender</label></td><td><input name="gender" value="<%=empl.getGender() %>" ></td></tr>
      <tr><td><label>Employee Job Role</label></td><td><input name="jobRole" value="<%=empl.getJobRole() %>" ></td></tr>
