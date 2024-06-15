@@ -200,9 +200,6 @@ public class EmployeeManagement extends HttpServlet {
 	// System.out.println("getContextPath"+request.getContextPath());
 //			System.out.println("getServletInfo"+ ServletContext.getRealPath(null));
 
-	// System.out.println("getRequestURl :"+request.getRequestURL());
-	// System.out.println("getServletName :"+request.getServerName());
-	// System.out.println(response.encodeRedirectURL(getServletInfo()));
 	// System.out.println(response.getContentType());
 //			System.out.println(request.getPathInfo());
 
