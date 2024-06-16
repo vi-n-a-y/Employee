@@ -1,7 +1,5 @@
 package com.vin.employeeDto;
 
-import java.sql.Date;
-
 public class EmployeeDTO {
 	private long empId;
 	private String name;
@@ -9,7 +7,6 @@ public class EmployeeDTO {
 	private int age;
 	private String mail;
 	private String jobRole;
-	private double salary;
 	private String phone;
 	public long getEmpId() {
 		return empId;
@@ -41,12 +38,7 @@ public class EmployeeDTO {
 	public void setJobRole(String jobRole) {
 		this.jobRole = jobRole;
 	}
-	public double getSalary() {
-		return salary;
-	}
-	public void setSalary(double salary) {
-		this.salary = salary;
-	}
+
 	
 	
 	
@@ -66,21 +58,6 @@ public class EmployeeDTO {
 		super();
 		
 	}
-	public EmployeeDTO(long empId, String name, String gender, int age, String mail, String jobRole, double salary,
-			String phone) {
-		super();
-		this.empId = empId;
-		this.name = name;
-		this.gender = gender;
-		this.age = age;
-		this.mail = mail;
-		this.jobRole = jobRole;
-		this.salary = salary;
-		this.phone = phone;
-	}
-	
-	
-	
 	public EmployeeDTO(long empId, String name, String gender, int age, String mail, String jobRole, String phone) {
 		super();
 		this.empId = empId;
@@ -94,14 +71,7 @@ public class EmployeeDTO {
 	@Override
 	public String toString() {
 		return "EmployeeDTO [empId=" + empId + ", name=" + name + ", gender=" + gender + ", age=" + age + ", mail="
-				+ mail + ", jobRole=" + jobRole + ", salary=" + salary + ", phone=" + phone + "]";
+				+ mail + ", jobRole=" + jobRole + ", phone=" + phone + "]";
 	}
-
-	
-	
-
-	
-	
-	
 
 }
