@@ -25,9 +25,9 @@
 <label>jobRole</label>
 <input type="text" name="jobRole" placeholder="Enter your role">
 <br>
-<label>salary</label>
+<!-- <label>salary</label>
 <input type="text" name="salary" placeholder="Enter your salary">
-<br>
+<br> -->
 <label>phone</label>
 <input type="text" name="phone" placeholder="Enter your phone Number">
 

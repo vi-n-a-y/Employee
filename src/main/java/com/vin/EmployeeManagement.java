@@ -131,7 +131,7 @@ public class EmployeeManagement extends HttpServlet {
 		String gender = request.getParameter("gender");
 		String mail = request.getParameter("mail");
 		String jobRole = request.getParameter("jobRole");
-		Double salary = Double.parseDouble(request.getParameter("salary"));
+//		Double salary = Double.parseDouble(request.getParameter("salary"));
 		String phone = request.getParameter("phone");
 		EmployeeDAO empDao = new EmployeeDAO();
 		EmployeeDTO empDto = new EmployeeDTO();
@@ -140,7 +140,7 @@ public class EmployeeManagement extends HttpServlet {
 		empDto.setGender(gender);
 		empDto.setMail(mail);
 		empDto.setJobRole(jobRole);
-		empDto.setSalary(salary);
+//		empDto.setSalary(salary);
 		empDto.setPhone(phone);
 		RequestDispatcher rd = request.getRequestDispatcher("/home.jsp");
 		if (empDao.registerEmployee(empDto)) {

@@ -38,10 +38,6 @@ public class EmployeeDTO {
 	public void setJobRole(String jobRole) {
 		this.jobRole = jobRole;
 	}
-
-	
-	
-	
 	public int getAge() {
 		return age;
 	}

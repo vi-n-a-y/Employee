@@ -69,7 +69,7 @@ public class EmployeeDAO {
 	public boolean registerEmployee(EmployeeDTO empDto) {
 		String query = "insert into employeedetails (name,gender,age,mail,jobRole,salary,phone)" + "values" + "('"
 				+ empDto.getName() + "','" + empDto.getGender() + "','" + empDto.getAge() + "','" + empDto.getMail()
-				+ "','" + empDto.getJobRole() + "','" + empDto.getSalary() + "','" + empDto.getPhone() + "')";
+				+ "','" + empDto.getJobRole() + "','" + empDto.getPhone() + "')";
 		System.out.println(query);
 
 		try {
@@ -99,7 +99,7 @@ public class EmployeeDAO {
 			empl.setGender(rs.getString("gender"));
 			empl.setMail(rs.getString("mail"));
 			empl.setJobRole(rs.getString("jobrole"));
-			empl.setSalary(rs.getDouble("salary"));
+//			empl.setSalary(rs.getDouble("salary"));
 			empl.setPhone(rs.getString("phone"));
 		}if(empl.getEmpId()==0) {
 			return null;
