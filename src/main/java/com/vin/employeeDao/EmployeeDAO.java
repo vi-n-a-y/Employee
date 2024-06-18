@@ -120,12 +120,9 @@ public class EmployeeDAO {
 			PreparedStatement ps=con.prepareStatement(query);
 			ps.execute();
 		} catch (SQLException | ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
-		
-		
 		
 		
 		return true;
@@ -135,14 +132,4 @@ public class EmployeeDAO {
 }
 
 
-//String str1 = "insert into admin(name,password,mail)" +"values ('" + admin.getName() + "','" + admin.getPassword()
-//+ "','" + admin.getMail() + "')";
-
-// String str = "insert into admin"+ "(name,password,mail) values "+"(?,?,?)";
-
-
-
-//ps.setString(1,admin.getName() );
-//ps.setString(2,admin.getPassword());
-//ps.setString(3, admin.getMail());
 
