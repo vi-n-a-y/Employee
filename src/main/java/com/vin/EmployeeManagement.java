@@ -221,7 +221,7 @@ public class EmployeeManagement extends HttpServlet {
 			System.out.println("details updated successfully");
 			request.getRequestDispatcher("/viewEmployee.jsp").forward(request, response);
 		} else {
-			response.sendRedirect("employeeDetails.jps");
+			response.sendRedirect("employeeDetails.jsp");
 		}
 
 	}
