@@ -109,7 +109,7 @@ public class EmployeeDAO {
 	
 	public boolean updateEmployee(EmployeeDTO emp) {
 		
-		String query="update employeedetails set name='"+emp.getName()+"','"+emp.getAge()+"','"+emp.getGender()+"','"+emp.getMail()+"','"+emp.getJobRole()+"','"+emp.getPhone()+"'where id='"+emp.getEmpId()+"'";
+		String query="update employeedetails set name='"+emp.getName()+"',age='"+emp.getAge()+"',gender='"+emp.getGender()+"',mail='"+emp.getMail()+"',jobRole='"+emp.getJobRole()+"',phone='"+emp.getPhone()+"'where empId='"+emp.getEmpId()+"'";
 		
 				System.out.println(query);
 		   
