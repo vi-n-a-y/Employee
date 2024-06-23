@@ -226,6 +226,28 @@ public class EmployeeManagement extends HttpServlet {
 
 	}
 
+
+		public void addSalary(HttpServletRequest request, HttpServletResponse response) {
+		int id=Integer.parseInt("empId");
+		double hra=Double.parseDouble("HRA");
+		double da=Double.parseDouble("MED");
+		double pf=Double.parseDouble("PF");
+		double basicSalary=Double.parseDouble("basicSalary");
+		
+		
+	}
+	
+	public void updateSalary(HttpServletRequest request, HttpServletResponse respone) {
+		int id=Integer.parseInt("empId");
+		double hra=Double.parseDouble("HRA");
+		double da=Double.parseDouble("MED");
+		double pf=Double.parseDouble("PF");
+		double basicSalary=Double.parseDouble("basicSalary");
+		
+	
+	
+	}
+
 }
 
 //create database employeeManagement;
