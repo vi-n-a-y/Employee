@@ -78,6 +78,13 @@ public class EmployeeManagement extends HttpServlet {
 			}
 			break;
 
+		case "updateSalary":
+			updateSalary(request, response);
+			break;
+		case "addSalary":
+			addSalary(request, response);
+			break;
+
 		default:
 			System.out.println("in switch case");
 
@@ -221,31 +228,27 @@ public class EmployeeManagement extends HttpServlet {
 			System.out.println("details updated successfully");
 			request.getRequestDispatcher("/viewEmployee.jsp").forward(request, response);
 		} else {
-			response.sendRedirect("employeeDetails.jsp");
+			response.sendRedirect("employeeDetails.jps");
 		}
 
 	}
 
+	public void addSalary(HttpServletRequest request, HttpServletResponse response) {
+		int id = Integer.parseInt("empId");
+		double hra = Double.parseDouble("HRA");
+		double da = Double.parseDouble("MED");
+		double pf = Double.parseDouble("PF");
+		double basicSalary = Double.parseDouble("basicSalary");
 
-		public void addSalary(HttpServletRequest request, HttpServletResponse response) {
-		int id=Integer.parseInt("empId");
-		double hra=Double.parseDouble("HRA");
-		double da=Double.parseDouble("MED");
-		double pf=Double.parseDouble("PF");
-		double basicSalary=Double.parseDouble("basicSalary");
-		
-		
 	}
-	
+
 	public void updateSalary(HttpServletRequest request, HttpServletResponse respone) {
-		int id=Integer.parseInt("empId");
-		double hra=Double.parseDouble("HRA");
-		double da=Double.parseDouble("MED");
-		double pf=Double.parseDouble("PF");
-		double basicSalary=Double.parseDouble("basicSalary");
-		
-	
-	
+		int id = Integer.parseInt("empId");
+		double hra = Double.parseDouble("HRA");
+		double da = Double.parseDouble("MED");
+		double pf = Double.parseDouble("PF");
+		double basicSalary = Double.parseDouble("basicSalary");
+
 	}
 
 }
