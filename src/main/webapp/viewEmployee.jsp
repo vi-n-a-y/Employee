@@ -14,8 +14,11 @@
 <label><b>Employee ID</b></label><input type="number" name ="empId" placeholder="Enter the Employee Id here">
 <input type="hidden" name ="action" value="getEmployeeDetails" >
 <button>Search</button>
+
 </center>
 </form>
+<a href="home.jsp"><button>Home</button></a>
+
 
 
 
@@ -27,7 +30,6 @@ EmployeeDTO empl=(EmployeeDTO) session.getAttribute("empl"); %>
      <tr><td><label>Employee Name</label></td><td><input value="<%=empl.getName() %>"readonly></td></tr>
      <tr><td><label>Employee Mail</label></td><td><input value="<%=empl.getMail() %>" readonly></td></tr>
      <tr><td><label>Employee Age</label></td><td><input value="<%=empl.getAge() %>" readonly></td></tr>
-     
      <tr><td><label>Employee Gender</label></td><td><input value="<%=empl.getGender() %>" readonly></td></tr>
      <tr><td><label>Employee Job Role</label></td><td><input value="<%=empl.getJobRole() %>" readonly></td></tr>
      <tr><td><label>Employee Phone</label></td><td><input value="<%=empl.getPhone() %>" readonly></td></tr>

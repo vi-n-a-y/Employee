@@ -8,8 +8,8 @@
 </head>
 <body>
 
- <a href="#"><button>Add Salary</button></a>
- <a href="#"><button>Update Salary</button></a>
+ <a href="addSalary.jsp"><button>Add Salary</button></a>
+ <a href="updateSalary.jsp"><button>Update Salary</button></a>
  <a href="#"><button>Generate Payment Slip</button></a><br>
  <a href="#"><button>back</button></a>
  <a href="#"><button>Exit</button></a>

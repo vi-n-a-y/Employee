@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import com.vin.employeeDao.EmployeeDAO;
 import com.vin.employeeDto.AdminDTO;
 import com.vin.employeeDto.EmployeeDTO;
+import com.vin.employeeDto.SalaryDTO;
 
 import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -207,6 +207,9 @@ public class EmployeeManagement extends HttpServlet {
 	// System.out.println("getContextPath"+request.getContextPath());
 //			System.out.println("getServletInfo"+ ServletContext.getRealPath(null));
 
+	// System.out.println("getRequestURl :"+request.getRequestURL());
+	// System.out.println("getServletName :"+request.getServerName());
+	// System.out.println(response.encodeRedirectURL(getServletInfo()));
 	// System.out.println(response.getContentType());
 //			System.out.println(request.getPathInfo());
 
@@ -219,7 +222,7 @@ public class EmployeeManagement extends HttpServlet {
 		String gender = request.getParameter("gender");
 		String mail = request.getParameter("mail");
 		String jobRole = request.getParameter("jobRole");
-		Double salary = Double.parseDouble(request.getParameter("salary"));
+//		Double salary = Double.parseDouble(request.getParameter("salary"));
 		String phone = request.getParameter("phone");
 		EmployeeDTO emp = new EmployeeDTO(empId, name, gender, age, mail, jobRole, phone);
 		EmployeeDAO empDao = new EmployeeDAO();
@@ -228,26 +231,53 @@ public class EmployeeManagement extends HttpServlet {
 			System.out.println("details updated successfully");
 			request.getRequestDispatcher("/viewEmployee.jsp").forward(request, response);
 		} else {
-			response.sendRedirect("employeeDetails.jps");
+			response.sendRedirect("employeeDetails.jsp");
 		}
 
 	}
 
-	public void addSalary(HttpServletRequest request, HttpServletResponse response) {
-		int id = Integer.parseInt("empId");
-		double hra = Double.parseDouble("HRA");
-		double da = Double.parseDouble("MED");
-		double pf = Double.parseDouble("PF");
-		double basicSalary = Double.parseDouble("basicSalary");
+	public void addSalary(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Long id = Long.parseLong(request.getParameter("empId"));
+		double hra = Double.parseDouble(request.getParameter("HRA"));
+		
+		double da = Double.parseDouble(request.getParameter("DA"));
+		double med = Double.parseDouble(request.getParameter("MED"));
+		double pf = Double.parseDouble(request.getParameter("PF"));
+		double basicSalary = Double.parseDouble(request.getParameter("basicSalary"));
+		SalaryDTO addSal=new SalaryDTO(id,hra,da,med,pf,basicSalary);
+		System.out.println(addSal);
+		EmployeeDAO empDao = new EmployeeDAO();
+		if(empDao.addSalary(addSal)) {
+			request.getRequestDispatcher("/salary.jsp").forward(request, response);
+		}else {
+			response.sendRedirect("home.jsp");
+		}
+		
+		
+		
 
 	}
 
-	public void updateSalary(HttpServletRequest request, HttpServletResponse respone) {
-		int id = Integer.parseInt("empId");
-		double hra = Double.parseDouble("HRA");
-		double da = Double.parseDouble("MED");
-		double pf = Double.parseDouble("PF");
-		double basicSalary = Double.parseDouble("basicSalary");
+	public void updateSalary(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		long id = Long.parseLong(request.getParameter("empId"));
+		double hra = Double.parseDouble(request.getParameter("HRA"));
+		double da = Double.parseDouble(request.getParameter("DA"));
+		double med = Double.parseDouble(request.getParameter("MED"));
+		double pf = Double.parseDouble(request.getParameter("PF"));
+		double basicSalary = Double.parseDouble(request.getParameter("basicSalary"));
+		SalaryDTO updateSal=new SalaryDTO(id,hra,da,med,pf,basicSalary);
+		
+		EmployeeDAO empDao = new EmployeeDAO();
+		if(empDao.updateSalary(updateSal)) {
+			HttpSession session=request.getSession();
+			
+			request.getRequestDispatcher("/salary.jsp").forward(request, response);
+		}else {
+			response.sendRedirect("home.jsp");
+		}
+		
+		
+		
 
 	}
 

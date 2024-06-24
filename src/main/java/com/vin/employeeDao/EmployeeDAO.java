@@ -8,6 +8,7 @@ import java.sql.Statement;
 
 import com.vin.employeeDto.AdminDTO;
 import com.vin.employeeDto.EmployeeDTO;
+import com.vin.employeeDto.SalaryDTO;
 
 public class EmployeeDAO {
 
@@ -34,20 +35,18 @@ public class EmployeeDAO {
 
 		System.out.println(str);
 
-
 		Connection con;
 		try {
 			con = DatabaseConnection.getConnection();
 			PreparedStatement ps = con.prepareStatement(str);
 			ps.execute();
-			
-		
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
-		
+
 		return true;
 
 	}
@@ -61,13 +60,13 @@ public class EmployeeDAO {
 		if (rs.next()) {
 			return true;
 
-		}else
-		return false;
+		} else
+			return false;
 
 	}
 
 	public boolean registerEmployee(EmployeeDTO empDto) {
-		String query = "insert into employeedetails (name,gender,age,mail,jobRole,salary,phone)" + "values" + "('"
+		String query = "insert into employeedetails (name,gender,age,mail,jobRole,phone)" + "values" + "('"
 				+ empDto.getName() + "','" + empDto.getGender() + "','" + empDto.getAge() + "','" + empDto.getMail()
 				+ "','" + empDto.getJobRole() + "','" + empDto.getPhone() + "')";
 		System.out.println(query);
@@ -83,53 +82,130 @@ public class EmployeeDAO {
 		return true;
 
 	}
-	
+
 	public EmployeeDTO getEmployeeDetails(int id) throws ClassNotFoundException, SQLException {
-		String str="select * from employeedetails where empId='"+id+"'";
+		String str = "select * from employeedetails where empId='" + id + "'";
 		System.out.println(str);
-		EmployeeDTO empl=new EmployeeDTO();
-		
-		Connection con=DatabaseConnection.getConnection();
-		Statement st=con.createStatement();
-		ResultSet rs=st.executeQuery(str);
-		if(rs.next()) {
+		EmployeeDTO empl = new EmployeeDTO();
+
+		Connection con = DatabaseConnection.getConnection();
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery(str);
+		if (rs.next()) {
 			empl.setEmpId(rs.getLong("empId"));
 			empl.setName(rs.getString("name"));
 			empl.setAge(rs.getInt("age"));
 			empl.setGender(rs.getString("gender"));
 			empl.setMail(rs.getString("mail"));
 			empl.setJobRole(rs.getString("jobrole"));
-//			empl.setSalary(rs.getDouble("salary"));
 			empl.setPhone(rs.getString("phone"));
-		}if(empl.getEmpId()==0) {
-			return null;
 		}
-			return empl;
+		if (empl.getEmpId() == 0) {
+			return null;
+		}else
+		return empl;
 	}
-	
+
 	public boolean updateEmployee(EmployeeDTO emp) {
-		
-		String query="update employeedetails set name='"+emp.getName()+"',age='"+emp.getAge()+"',gender='"+emp.getGender()+"',mail='"+emp.getMail()+"',jobRole='"+emp.getJobRole()+"',phone='"+emp.getPhone()+"'where empId='"+emp.getEmpId()+"'";
-		
-				System.out.println(query);
-		   
-		
-		 
+
+		String query = "update employeedetails set name='" + emp.getName() + "',age='" + emp.getAge() + "',gender='"
+				+ emp.getGender() + "',mail='" + emp.getMail() + "',jobRole='" + emp.getJobRole() + "',phone='"
+				+ emp.getPhone() + "'where empId='" + emp.getEmpId() + "'";
+
+		System.out.println(query);
+
 		try {
-			Connection con=DatabaseConnection.getConnection();
-			PreparedStatement ps=con.prepareStatement(query);
+			Connection con = DatabaseConnection.getConnection();
+			PreparedStatement ps = con.prepareStatement(query);
 			ps.execute();
 		} catch (SQLException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
-		
-		
+
 		return true;
 	}
+	
+	public SalaryDTO getSalary(Long empId) {
+		String query="select * from salary where empId='"+empId+"'";
+		System.out.println(query);
+		
+		SalaryDTO sal=new SalaryDTO();
+		try {
+			Connection con = DatabaseConnection.getConnection();
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery(query);
+		
+			
+			if(rs.next()) {
+				sal.setEmpId(rs.getLong("empId"));
+				sal.setHRA(rs.getLong("HRA"));
+				sal.setDA(rs.getDouble("DA"));
+				sal.setMED(rs.getDouble("MED"));
+				sal.setPF(rs.getDouble("PF"));
+				sal.setBasicSalary(rs.getDouble("basicSalary"));
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		if(sal.getEmpId()==0) {
+			return null;
+		}else
+		return sal;
+		
+		
+		
+		
+	}
 
+	public boolean addSalary(SalaryDTO sal) {
+		String query = "insert into salary (empId,HRA,DA,MED,PF,basicSalary) values('" + sal.getEmpId() + "','"
+				+ sal.getHRA() + "','" + sal.getDA() + "','" + sal.getMED() + "','" + sal.getPF() + "','"
+				+ sal.getBasicSalary() + "')";
+		System.out.println(query);
+
+		try {
+			Connection con = DatabaseConnection.getConnection();
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.execute();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+
+	}
+
+	public boolean updateSalary(SalaryDTO upSal) {
+
+		String query = "update salary set hra='" + upSal.getHRA() + "',da='" + upSal.getDA() + "',med='"
+				+ upSal.getMED() + "',pf='" + upSal.getPF() + "',basicSalary='" + upSal.getBasicSalary()
+				+ "' where empId='" + upSal.getEmpId() + "'";
+		System.out.println(query);
+
+		try {
+			Connection con = DatabaseConnection.getConnection();
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.execute();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+
+	}
 
 }
 
+//String str1 = "insert into admin(name,password,mail)" +"values ('" + admin.getName() + "','" + admin.getPassword()
+//+ "','" + admin.getMail() + "')";
 
+// String str = "insert into admin"+ "(name,password,mail) values "+"(?,?,?)";
 
+//ps.setString(1,admin.getName() );
+//ps.setString(2,admin.getPassword());
+//ps.setString(3, admin.getMail());

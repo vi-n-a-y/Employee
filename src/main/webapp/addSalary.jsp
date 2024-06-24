@@ -12,7 +12,7 @@
 		<table>
 			<tr>
 				<td><label>Employee Id</label></td>
-				<td><input type="text" name="empId" readOnly /></td>
+				<td><input type="text" name="empId"  /></td>
 			</tr>
 			<tr>
 				<td><label>HRA</label></td>
