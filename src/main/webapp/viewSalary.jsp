@@ -7,6 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1>View Salary</h1>
+<form action="emp" method="post">
+<input type="text" placeholder="Enter Employee Id" name="empId">
+<input type="hidden" name="action" value="viewSalary">
+<button>Submit</button>
+</form>
 
 </body>
 </html>
