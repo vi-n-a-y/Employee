@@ -1,16 +1,16 @@
 package com.vin.employeeDto;
 
 public class SalaryDTO {
-	private Long empId;
+	private long empId;
 	private double HRA;
 	private double DA;
 	private double MED;
 	private double PF;
 	private double basicSalary;
-	public Long getEmpId() {
+	public long getEmpId() {
 		return empId;
 	}
-	public void setEmpId(Long empId) {
+	public void setEmpId(long empId) {
 		this.empId = empId;
 	}
 	public double getHRA() {
@@ -48,7 +48,7 @@ public class SalaryDTO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public SalaryDTO(Long empId, double hRA, double dA, double mED, double pF, double basicSalary) {
+	public SalaryDTO(long empId, double hRA, double dA, double mED, double pF, double basicSalary) {
 		super();
 		this.empId = empId;
 		HRA = hRA;

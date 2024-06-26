@@ -102,8 +102,8 @@ public class EmployeeDAO {
 		}
 		if (empl.getEmpId() == 0) {
 			return null;
-		}else
-		return empl;
+		} else
+			return empl;
 	}
 
 	public boolean updateEmployee(EmployeeDTO emp) {
@@ -126,38 +126,35 @@ public class EmployeeDAO {
 
 		return true;
 	}
-	
+
 	public SalaryDTO getSalary(Long empId) {
-		String query="select * from salary where empId='"+empId+"'";
+		String query = "select * from salary where empId='" + empId + "'";
 		System.out.println(query);
-		
-		SalaryDTO sal=new SalaryDTO();
+
+		SalaryDTO sal = new SalaryDTO();
 		try {
 			Connection con = DatabaseConnection.getConnection();
-			Statement st=con.createStatement();
-			ResultSet rs=st.executeQuery(query);
-		
-			
-			if(rs.next()) {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+
+			if (rs.next()) {
 				sal.setEmpId(rs.getLong("empId"));
-				sal.setHRA(rs.getLong("HRA"));
+				sal.setHRA(rs.getDouble("HRA"));
 				sal.setDA(rs.getDouble("DA"));
 				sal.setMED(rs.getDouble("MED"));
 				sal.setPF(rs.getDouble("PF"));
 				sal.setBasicSalary(rs.getDouble("basicSalary"));
+				System.out.println(sal.getBasicSalary());
 			}
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 		}
-		if(sal.getEmpId()==0) {
+		if (sal.getEmpId() == 0) {
 			return null;
-		}else
-		return sal;
-		
-		
-		
-		
+		} else
+			return sal;
+
 	}
 
 	public boolean addSalary(SalaryDTO sal) {

@@ -9,6 +9,7 @@ import com.vin.employeeDto.EmployeeDTO;
 import com.vin.employeeDto.SalaryDTO;
 
 import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -78,11 +79,22 @@ public class EmployeeManagement extends HttpServlet {
 			}
 			break;
 
-		case "updateSalary":
-			updateSalary(request, response);
+		case "viewSalary":
+			System.out.println("in view salary switch case");
+			viewSalary(request, response);
+			
 			break;
+			
+		case "viewUpdateSalary":
+			viewSalary(request, response);
+			break;	
+
 		case "addSalary":
 			addSalary(request, response);
+			break;
+
+		case "updateSalary":
+			updateSalary(request, response);
 			break;
 
 		default:
@@ -236,48 +248,70 @@ public class EmployeeManagement extends HttpServlet {
 
 	}
 
-	public void addSalary(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Long id = Long.parseLong(request.getParameter("empId"));
-		double hra = Double.parseDouble(request.getParameter("HRA"));
-		
-		double da = Double.parseDouble(request.getParameter("DA"));
-		double med = Double.parseDouble(request.getParameter("MED"));
-		double pf = Double.parseDouble(request.getParameter("PF"));
-		double basicSalary = Double.parseDouble(request.getParameter("basicSalary"));
-		SalaryDTO addSal=new SalaryDTO(id,hra,da,med,pf,basicSalary);
-		System.out.println(addSal);
+	public void viewSalary(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
 		EmployeeDAO empDao = new EmployeeDAO();
-		if(empDao.addSalary(addSal)) {
-			request.getRequestDispatcher("/salary.jsp").forward(request, response);
-		}else {
-			response.sendRedirect("home.jsp");
-		}
+		Long id = Long.parseLong(request.getParameter("empId"));
+		SalaryDTO salDto = empDao.getSalary(id);
+		String action=request.getParameter("action");
 		
+		if (salDto != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("salDto", salDto);
+			if(action.equals("viewSalary")) {
+				
+				request.getRequestDispatcher("/viewSalary.jsp").forward(request, response);
+
+			}else {
+				request.getRequestDispatcher("/updateSalary.jsp").forward(request, response);
+				
+			}
+		} else {
+			response.sendRedirect("salary.jsp");
+		}
 		
 		
 
 	}
 
-	public void updateSalary(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void addSalary(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Long id = Long.parseLong(request.getParameter("empId"));
+		double hra = Double.parseDouble(request.getParameter("HRA"));
+
+		double da = Double.parseDouble(request.getParameter("DA"));
+		double med = Double.parseDouble(request.getParameter("MED"));
+		double pf = Double.parseDouble(request.getParameter("PF"));
+		double basicSalary = Double.parseDouble(request.getParameter("basicSalary"));
+		SalaryDTO addSal = new SalaryDTO(id, hra, da, med, pf, basicSalary);
+		System.out.println(addSal);
+		EmployeeDAO empDao = new EmployeeDAO();
+		if (empDao.addSalary(addSal)) {
+			request.getRequestDispatcher("/salary.jsp").forward(request, response);
+		} else {
+			response.sendRedirect("home.jsp");
+		}
+
+	}
+
+	public void updateSalary(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		long id = Long.parseLong(request.getParameter("empId"));
 		double hra = Double.parseDouble(request.getParameter("HRA"));
 		double da = Double.parseDouble(request.getParameter("DA"));
 		double med = Double.parseDouble(request.getParameter("MED"));
 		double pf = Double.parseDouble(request.getParameter("PF"));
 		double basicSalary = Double.parseDouble(request.getParameter("basicSalary"));
-		SalaryDTO updateSal=new SalaryDTO(id,hra,da,med,pf,basicSalary);
-		
+		SalaryDTO updateSal = new SalaryDTO(id, hra, da, med, pf, basicSalary);
+
 		EmployeeDAO empDao = new EmployeeDAO();
-		if(empDao.updateSalary(updateSal)) {
-			HttpSession session=request.getSession();
+		if (empDao.updateSalary(updateSal)) {
 			
+
 			request.getRequestDispatcher("/salary.jsp").forward(request, response);
-		}else {
+		} else {
 			response.sendRedirect("home.jsp");
 		}
-		
-		
-		
 
 	}
 
