@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Employee Register</title>
 </head>
 <body>
 <form action="emp" method="post">
@@ -25,12 +25,8 @@
 <label>jobRole</label>
 <input type="text" name="jobRole" placeholder="Enter your role">
 <br>
-<!-- <label>salary</label>
-<input type="text" name="salary" placeholder="Enter your salary">
-<br> -->
 <label>phone</label>
 <input type="text" name="phone" placeholder="Enter your phone Number">
-
 <br>
 <input type="hidden" name="action" value="employeeRegister">
 <button>submit</button>

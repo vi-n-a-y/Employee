@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Attendance Page</title>
 </head>
 <body>
 <a href="fillAttendance.jsp"><button>Fill Attendance</button></a>
