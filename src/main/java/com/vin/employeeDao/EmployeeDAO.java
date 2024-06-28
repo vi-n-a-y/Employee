@@ -75,6 +75,7 @@ public class EmployeeDAO {
 			Connection con = DatabaseConnection.getConnection();
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.executeUpdate();
+			DatabaseConnection.closeConnection(con);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			return false;
@@ -83,7 +84,7 @@ public class EmployeeDAO {
 
 	}
 
-	public EmployeeDTO getEmployeeDetails(int id) throws ClassNotFoundException, SQLException {
+	public EmployeeDTO getEmployeeDetails(int id) throws Exception {
 		String str = "select * from employeedetails where empId='" + id + "'";
 		System.out.println(str);
 		EmployeeDTO empl = new EmployeeDTO();
@@ -100,9 +101,11 @@ public class EmployeeDAO {
 			empl.setJobRole(rs.getString("jobrole"));
 			empl.setPhone(rs.getString("phone"));
 		}
+		DatabaseConnection.closeConnection(con);
 		if (empl.getEmpId() == 0) {
 			return null;
 		} else
+
 			return empl;
 	}
 
@@ -118,7 +121,8 @@ public class EmployeeDAO {
 			Connection con = DatabaseConnection.getConnection();
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.execute();
-		} catch (SQLException | ClassNotFoundException e) {
+			DatabaseConnection.closeConnection(con);
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
@@ -146,6 +150,7 @@ public class EmployeeDAO {
 				sal.setBasicSalary(rs.getDouble("basicSalary"));
 				System.out.println(sal.getBasicSalary());
 			}
+			DatabaseConnection.closeConnection(con);
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -167,6 +172,7 @@ public class EmployeeDAO {
 			Connection con = DatabaseConnection.getConnection();
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.execute();
+			DatabaseConnection.closeConnection(con);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -187,6 +193,7 @@ public class EmployeeDAO {
 			Connection con = DatabaseConnection.getConnection();
 			PreparedStatement ps = con.prepareStatement(query);
 			ps.execute();
+			DatabaseConnection.closeConnection(con);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
