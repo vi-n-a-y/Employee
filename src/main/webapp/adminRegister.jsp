@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<a href="home.jsp"><button>Home</button></a>
 <form action="emp" method="post">
 	<input type="text" name="name1" placeholder="Enter your name">
 	<input type="password" name="password" placeholder="enter your password">
