@@ -14,6 +14,7 @@
 		<input type="hidden" name="action" value="viewSalary">
 		<button>Submit</button>
 	</form>
+        <a href="home.jsp"><button>Home</button></a>
 
 	<%
 	SalaryDTO salDto = (SalaryDTO) session.getAttribute("salDto");
