@@ -59,6 +59,9 @@ public class EmployeeManagement extends HttpServlet {
 			} catch (ClassNotFoundException | SQLException e) {
 
 				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			break;
 		case "updateEmployee":
@@ -76,6 +79,17 @@ public class EmployeeManagement extends HttpServlet {
 			} catch (ClassNotFoundException | SQLException | IOException e) {
 
 				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+			
+		case "removeEmployee":
+			try {
+				removeEmployee(request,response);
+			}catch(Exception ex) {
+				ex.printStackTrace();
 			}
 			break;
 
@@ -135,10 +149,12 @@ public class EmployeeManagement extends HttpServlet {
 		admin.setName(name);
 		admin.setPassword(password);
 		admin.setMail(mail);
-		RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/adminLogin.jsp");
 		if (emp.registerAdmin(admin)) {
 			rd.forward(request, response);
 
+		}else {
+			response.sendRedirect("adminRegister.jsp");
 		}
 
 	}
@@ -174,7 +190,7 @@ public class EmployeeManagement extends HttpServlet {
 	}
 
 	public boolean getEmployee(HttpServletRequest request, HttpServletResponse response)
-			throws ClassNotFoundException, SQLException, ServletException, IOException {
+			throws Exception {
 		int id = Integer.parseInt(request.getParameter("empId"));
 		System.out.println(id);
 		EmployeeDAO emp = new EmployeeDAO();
@@ -201,7 +217,7 @@ public class EmployeeManagement extends HttpServlet {
 	}
 
 	public void getEmployeeDetails(HttpServletRequest request, HttpServletResponse response)
-			throws ClassNotFoundException, SQLException, ServletException, IOException {
+			throws Exception {
 		if (getEmployee(request, response)) {
 			request.getRequestDispatcher("/viewEmployee.jsp").forward(request, response);
 		}
@@ -209,7 +225,7 @@ public class EmployeeManagement extends HttpServlet {
 	}
 
 	public void getEmployeeDetailsForUpdate(HttpServletRequest request, HttpServletResponse response)
-			throws ClassNotFoundException, SQLException, ServletException, IOException {
+			throws Exception {
 		if (getEmployee(request, response)) {
 			request.getRequestDispatcher("/updateEmployee.jsp").forward(request, response);
 		}
@@ -246,6 +262,20 @@ public class EmployeeManagement extends HttpServlet {
 			response.sendRedirect("employeeDetails.jsp");
 		}
 
+	}
+	
+	
+	public void removeEmployee(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		long id=Long.parseLong(request.getParameter("empId"));
+	EmployeeDAO emp=new EmployeeDAO();
+	if(emp.removeEmployee(id)) {
+		System.out.println("removed success fully");
+		request.getRequestDispatcher("/employeeDetails.jsp").forward(request, response);
+	}else {
+		response.sendRedirect("removeEmployee.jsp");
+	}
+		
+		
 	}
 
 	public void viewSalary(HttpServletRequest request, HttpServletResponse response)

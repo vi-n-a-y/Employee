@@ -9,8 +9,8 @@
 <body>
 <a href="fillAttendance.jsp"><button>Fill Attendance</button></a>
 <a href="viewAttendance.jsp"><button>View Attendance</button></a>
-<a href="#"><button>Back</button></a>
-<a href="#"><button>Exit</button></a>
+<a href="home.jsp"><button>Home</button></a>
+<a href="adminLogin.jsp"><button>Exit</button></a>
 
 
 </body>

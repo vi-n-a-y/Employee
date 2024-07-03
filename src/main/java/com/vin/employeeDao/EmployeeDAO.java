@@ -202,6 +202,32 @@ public class EmployeeDAO {
 		return true;
 
 	}
+	
+	
+	public boolean removeEmployee(long id) {
+		String query="delete from employeeDetails where EmpId='"+id+"'";
+		
+		System.out.println(query);
+		Connection con=null;
+		try {
+			 con=DatabaseConnection.getConnection();
+			PreparedStatement ps=con.prepareStatement(query);
+			ps.execute();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return false;
+		}
+		finally {
+			try {
+				DatabaseConnection.closeConnection(con);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return true;
+		
+	}
 
 }
 

@@ -14,8 +14,8 @@
 	<a href="viewEmployee.jsp"><button>View</button></a>
 	<a href="updateEmployee.jsp"><button>Update</button></a>
 	<a href="removeEmployee.jsp"><button>Remove</button></a>
-	<a href="#"><button>Back</button></a>
-	<a href="#"><button>Exit</button></a>
+	<a href="home.jsp"><button>Home</button></a>
+<a href="adminLogin.jsp"><button>Exit</button></a>
 
 </body>
 </html>
