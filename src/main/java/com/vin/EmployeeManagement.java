@@ -30,23 +30,13 @@ public class EmployeeManagement extends HttpServlet {
 		switch (action) {
 		case "adminRegister":
 
-			try {
-				registerAdmin(request, response);
-			} catch (ClassNotFoundException | SQLException e) {
-
-				e.printStackTrace();
-			}
+			registerAdmin(request, response);
 
 			break;
 
 		case "adminLogin":
 
-			try {
-				loginAdmin(request, response);
-			} catch (ClassNotFoundException | ServletException | IOException | SQLException e) {
-
-				e.printStackTrace();
-			}
+			loginAdmin(request, response);
 
 			break;
 		case "employeeRegister":
@@ -56,9 +46,6 @@ public class EmployeeManagement extends HttpServlet {
 		case "getEmployeeDetails":
 			try {
 				getEmployeeDetails(request, response);
-			} catch (ClassNotFoundException | SQLException e) {
-
-				e.printStackTrace();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -67,7 +54,7 @@ public class EmployeeManagement extends HttpServlet {
 		case "updateEmployee":
 			try {
 				updateEmployeeDetails(request, response);
-			} catch (ClassNotFoundException | SQLException | IOException e) {
+			} catch (IOException e) {
 
 				e.printStackTrace();
 			}
@@ -125,21 +112,43 @@ public class EmployeeManagement extends HttpServlet {
 	}
 
 	public void loginAdmin(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, ClassNotFoundException, SQLException {
+			{
 		EmployeeDAO emp = new EmployeeDAO();
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
 		System.out.println(name + " " + password);
 		RequestDispatcher rd = request.getRequestDispatcher("/home.jsp");
-		if (emp.adminLogin(name, password)) {
-			rd.forward(request, response);
-			System.out.println("login success");
-		}
+		try {
+			if (emp.adminLogin(name, password)) {
+				rd.forward(request, response);
+				System.out.println("login success");
+			}else {
+				
+				try {
+					response.sendRedirect("error.jsp");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}																																																																																																																																																																																																																																																																												
 
 	}
-
+																																																														
 	public void registerAdmin(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException, ClassNotFoundException {
+			 {
 
 		EmployeeDAO emp = new EmployeeDAO();
 		String name = request.getParameter("name1");
@@ -151,16 +160,29 @@ public class EmployeeManagement extends HttpServlet {
 		admin.setMail(mail);
 		RequestDispatcher rd = request.getRequestDispatcher("/adminLogin.jsp");
 		if (emp.registerAdmin(admin)) {
-			rd.forward(request, response);
+			try {
+				rd.forward(request, response);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		}else {
-			response.sendRedirect("adminRegister.jsp");
+			try {
+				response.sendRedirect("error.jsp");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	}
 
 	public void registerEmployee(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			 {
 		String name = request.getParameter("name");
 		int age = Integer.parseInt(request.getParameter("age"));
 		String gender = request.getParameter("gender");
@@ -179,7 +201,15 @@ public class EmployeeManagement extends HttpServlet {
 		empDto.setPhone(phone);
 		RequestDispatcher rd = request.getRequestDispatcher("/home.jsp");
 		if (empDao.registerEmployee(empDto)) {
-			rd.forward(request, response);
+			try {
+				rd.forward(request, response);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			System.out.println("register success");
 
@@ -190,12 +220,25 @@ public class EmployeeManagement extends HttpServlet {
 	}
 
 	public boolean getEmployee(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+			 {
 		int id = Integer.parseInt(request.getParameter("empId"));
 		System.out.println(id);
 		EmployeeDAO emp = new EmployeeDAO();
-		EmployeeDTO empl = emp.getEmployeeDetails(id);
+		EmployeeDTO empl;
 		HttpSession session = request.getSession();
+		try {
+			empl = emp.getEmployeeDetails(id);
+			if (empl != null) {
+				session.setAttribute("empl", empl);
+				
+
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 		// System.out.println(request.getContextPath());
 		// System.out.println(request.getPathInfo());
 //		System.out.println("get server name  "+ request.getServerName());
@@ -207,19 +250,18 @@ public class EmployeeManagement extends HttpServlet {
 //		
 //		System.out.println("get user principal : "+request.getUserPrincipal());
 
-		if (empl != null) {
-			session.setAttribute("empl", empl);
-			return true;
-
-		} else
-			return false;
 
 	}
 
 	public void getEmployeeDetails(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		if (getEmployee(request, response)) {
-			request.getRequestDispatcher("/viewEmployee.jsp").forward(request, response);
+			 {
+		try {
+			if (getEmployee(request, response)) {
+				request.getRequestDispatcher("/viewEmployee.jsp").forward(request, response);
+			}
+		}  catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
@@ -241,8 +283,8 @@ public class EmployeeManagement extends HttpServlet {
 	// System.out.println(response.getContentType());
 //			System.out.println(request.getPathInfo());
 
-	public void updateEmployeeDetails(HttpServletRequest request, HttpServletResponse response)
-			throws ClassNotFoundException, SQLException, IOException, ServletException {
+	public  void updateEmployeeDetails(HttpServletRequest request, HttpServletResponse response) throws IOException
+			 {
 
 		int empId = Integer.parseInt(request.getParameter("empId"));
 		String name = request.getParameter("name");
@@ -257,7 +299,12 @@ public class EmployeeManagement extends HttpServlet {
 
 		if (empDao.updateEmployee(emp)) {
 			System.out.println("details updated successfully");
-			request.getRequestDispatcher("/viewEmployee.jsp").forward(request, response);
+			try {
+				request.getRequestDispatcher("/viewEmployee.jsp").forward(request, response);
+			} catch (ServletException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			response.sendRedirect("employeeDetails.jsp");
 		}

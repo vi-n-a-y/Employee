@@ -205,14 +205,17 @@ public class EmployeeDAO {
 	
 	
 	public boolean removeEmployee(long id) {
-		String query="delete from employeeDetails where EmpId='"+id+"'";
-		
-		System.out.println(query);
+		String query1="delete from salary where EmpId='"+id+"'";
+		String query2="delete from employeeDetails where EmpId='"+id+"'";
+		System.out.println(query1);
+		System.out.println(query2);
 		Connection con=null;
 		try {
 			 con=DatabaseConnection.getConnection();
-			PreparedStatement ps=con.prepareStatement(query);
-			ps.execute();
+			PreparedStatement ps1=con.prepareStatement(query1);
+			PreparedStatement ps2=con.prepareStatement(query2);
+			ps1.execute();
+			ps2.execute();
 		}catch(Exception ex) {
 			ex.printStackTrace();
 			return false;
