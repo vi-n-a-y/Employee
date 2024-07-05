@@ -7,9 +7,10 @@
 <title>Employee Register</title>
 </head>
 <body>
+<a href="home.jsp"><button>Home</button></a>
 <form action="emp" method="post">
 <h1>Employee Login</h1>
-<a href="home.jsp"><button>Home</button></a>
+
 <label>Name : </label>
 <input type="text" name="name" placeholder="Enter your Name">
 
