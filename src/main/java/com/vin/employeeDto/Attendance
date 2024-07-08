@@ -1,0 +1,8 @@
+package com.vin.employeeDto;
+
+public class Attendance {
+	
+	private long empId;
+	private String firstHalf;
+	private String secondHalf;
+	private Date date;
