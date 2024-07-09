@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" errorPage="error.jsp"%>
+   <%@ page import="com.vin.employeeDto. AttendanceDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,17 +9,18 @@
 </head>
 <body>
 
-<h1>View Attendance</>
+<h1>View Attendance</h1>
 <form action="emp" method="get">
 <Table>
 <tr><td><label>EmpId</label></td><td><input type="text"  name="empId"></td></tr>
-<input type="hidden" name="action" value="viewAttendance">
-<button>Submit</button>
+
+<tr><td><input type="hidden" name="action" value="viewAttendance"></td></tr>
 </table>
+<button>Submit</button>
 </form>
 
-<%Attendance attendance=(Attendance) Session.getAttribute("attendance");
-if(attendance!=null)%>
+<% AttendanceDTO attendance=( AttendanceDTO) session.getAttribute("attendance");%>
+<% if(attendance!=null){%>
 <form action="emp" method="get">
 <Table>
 <tr><td><label>EmpId</label></td><td><input type="text"  name="empId"></td></tr>
