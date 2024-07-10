@@ -232,6 +232,36 @@ public class EmployeeDAO {
 		
 	}
 
+
+	public AttendanceDTO getAttendance(Long empId) {
+		String query = "select * from attendance where empId='" + empId + "'";
+		System.out.println(query);
+
+		AttendanceDTO attend = new AttendanceDTO();
+		try {
+			Connection con = DatabaseConnection.getConnection();
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+
+			if (rs.next()) {
+				attend.setEmpId(rs.getLong("empId"));
+				attend.setDate(rs.getDate("date"));
+				attend.setFirstHalf(rs.getString("firstHalf"));
+				attend.setSecondHalf(rs.getString("secondHalf"));
+
+			}
+			DatabaseConnection.closeConnection(con);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+		if (attend.getEmpId() == 0) {
+			return null;
+		} else
+			return attend;
+
+	}	
+
 }
 
 //String str1 = "insert into admin(name,password,mail)" +"values ('" + admin.getName() + "','" + admin.getPassword()
